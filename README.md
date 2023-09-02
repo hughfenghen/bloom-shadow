@@ -2,7 +2,8 @@
 
 ![bloom-shadow](./bloom-shadow.jpg)  
 
-**北陂杏花**
+**北陂杏花**  
+王安石
 
 一陂（bēi）春水绕花身
 
