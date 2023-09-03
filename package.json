@@ -10,12 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@webav/av-canvas": "^0.1.52",
-    "@webav/av-cliper": "^0.1.52",
+    "@webav/av-canvas": "^0.1.54",
+    "@webav/av-cliper": "^0.1.54",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@types/dom-mediacapture-transform": "^0.1.6",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@typescript-eslint/eslint-plugin": "^6.0.0",

@@ -432,6 +432,18 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@types/dom-mediacapture-transform@^0.1.6":
+  version "0.1.6"
+  resolved "https://registry.npmjs.org/@types/dom-mediacapture-transform/-/dom-mediacapture-transform-0.1.6.tgz#26890dbfa4b3e5d81fba370e49f579892bcf89a3"
+  integrity sha512-sl2o+PVeciAozjEmj6UOnxOB3n4qv9bs2mw7PFYWYxpUKTHRIpDvm8TTfsWoRI86byQXWjQKecckaGSx/ExDPA==
+  dependencies:
+    "@types/dom-webcodecs" "*"
+
+"@types/dom-webcodecs@*":
+  version "0.1.8"
+  resolved "https://registry.npmjs.org/@types/dom-webcodecs/-/dom-webcodecs-0.1.8.tgz#1f48409f83120625a12b6692a271ff3f10d77b7b"
+  integrity sha512-KThTPaGQJLITk8Q0XkEkz+GqFdoWDyQfbyeJmfEUagB15TZQdNx5AqP2b7GP6vkVM6X/6T1Z8EHxA8RgHfY9BA==
+
 "@types/json-schema@^7.0.12":
   version "7.0.12"
   resolved "https://registry.npmmirror.com/@types/json-schema/-/json-schema-7.0.12.tgz#d70faba7039d5fca54c83c7dbab41051d2b6f6cb"
@@ -563,20 +575,25 @@
     "@babel/plugin-transform-react-jsx-source" "^7.22.5"
     react-refresh "^0.14.0"
 
-"@webav/av-canvas@^0.1.52":
-  version "0.1.52"
-  resolved "https://registry.npmmirror.com/@webav/av-canvas/-/av-canvas-0.1.52.tgz#461698a66b4ca1033fd3754ae70ffb2d46bbd5e7"
-  integrity sha512-H3spPADZgI5ducw+mdFH4tONeyzzneB5whs9onRLJeM/7IK/xoJGvaCNV1ctoSMmXtf+Uhx3rzvdCUYo/kvdsA==
+"@webav/av-canvas@^0.1.54":
+  version "0.1.54"
+  resolved "https://registry.npmjs.org/@webav/av-canvas/-/av-canvas-0.1.54.tgz#28300ae46ee4c75cd2ea16ad803bfbfb3c80c25b"
+  integrity sha512-FmpMKG/WatRgYe8z055QyjAfeIggYnCyxX9ij7K8u3l8xgOhhmKctzVKajn6qYwQSMuVsgzyaGMOFQOvKT/B6Q==
   dependencies:
-    "@webav/av-cliper" "^0.1.52"
+    "@webav/av-cliper" "^0.1.54"
 
-"@webav/av-cliper@^0.1.52":
-  version "0.1.52"
-  resolved "https://registry.npmmirror.com/@webav/av-cliper/-/av-cliper-0.1.52.tgz#16b315a7ec29165c063aa4e08a4b9dab21ac42e6"
-  integrity sha512-xg6qGXRJEsLYs1Ul8f0HAWW8i0zFsTznWxgaHDV52XhmSCYFIixLApqhH7wrENYmdgXjZATWsGqvdrzKZYP0Ig==
+"@webav/av-cliper@^0.1.54":
+  version "0.1.54"
+  resolved "https://registry.npmjs.org/@webav/av-cliper/-/av-cliper-0.1.54.tgz#c9f3a87deae07ddc88c0859b0d7c0d2216646b88"
+  integrity sha512-hBuk5hqGgSer8tjV5NmQsL2t55GU79gfzOAy1avH2Ts3MirVfZcs+bt7moMgCVMnh870n2MMrLQCToa4rKHvtw==
   dependencies:
-    mp4box hughfenghen/mp4box.js
+    "@webav/mp4box.js" "0.5.3-fenghen"
     wave-resampler "^1.0.0"
+
+"@webav/mp4box.js@0.5.3-fenghen":
+  version "0.5.3-fenghen"
+  resolved "https://registry.npmjs.org/@webav/mp4box.js/-/mp4box.js-0.5.3-fenghen.tgz#2a5e744f78e21749e3ab13116129d99247bc4d23"
+  integrity sha512-jAN15I3Po1Z6Ns02iknb6KGbird9rd1h9TGldzbwsar+88ZlHd+oVjOQnFavBdNDc5vmULUnldcWGDdKc02npw==
 
 acorn-jsx@^5.3.2:
   version "5.3.2"
@@ -1349,10 +1366,6 @@ minimatch@^3.0.4, minimatch@^3.0.5, minimatch@^3.1.1, minimatch@^3.1.2:
   integrity sha512-J7p63hRiAjw1NDEww1W7i37+ByIrOWO5XQQAzZ3VOcL0PNybwpfmV/N05zFAzwQ9USyEcX6t3UO+K5aqBQOIHw==
   dependencies:
     brace-expansion "^1.1.7"
-
-"mp4box@github:hughfenghen/mp4box.js":
-  version "0.5.3-fenghen"
-  resolved "https://codeload.github.com/hughfenghen/mp4box.js/tar.gz/9e06b3c7075c1fc1c6c0af23fac61fe54576504c"
 
 ms@2.1.2:
   version "2.1.2"
