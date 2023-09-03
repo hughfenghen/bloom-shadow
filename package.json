@@ -10,6 +10,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@webav/av-canvas": "^0.1.52",
+    "@webav/av-cliper": "^0.1.52",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

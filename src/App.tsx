@@ -1,29 +1,32 @@
-import { useState } from 'react'
-import './App.css'
+import './App.css';
+import { Player } from './player';
+import { AddResource } from './AddResource';
 
 function App() {
-  // const [count, setCount] = useState(0)
-
   return (
-    <div className='h-screen flex flex-col'>
-      <div className='flex flex-1'>
-        <div className='left border-solid border-2 w-{100} w-px-200'>
-          <div className='add-sprite'>
-            <div className='font-bold'>添加素材</div>
+    <div className="h-screen flex flex-col">
+      <div className="flex flex-1">
+        <div className="left flex flex-col border-solid border-2 w-[200px]">
+          <div className="flex-1">
+            <AddResource></AddResource>
           </div>
-          <div className='sprite-list'>
-            <div className='font-bold'>素材列表</div>
+          <div className="sprite-list flex-1">
+            <div className="font-bold">素材列表</div>
+            <div>开发中</div>
           </div>
-          <div className='tpl-list'>
-            <div className='font-bold'>模板列表</div>
+          <div className="tpl-list flex-1">
+            <div className="font-bold">模板列表</div>
+            <div>开发中</div>
           </div>
         </div>
-        <div className='main flex-1'></div>
-        <div className='right'></div>
+        <div className="main flex-1 border-solid border-2">
+          <Player></Player>
+        </div>
+        <div className="right border-solid border-2 w-[200px]">开发中</div>
       </div>
-      <footer>111</footer>
+      <footer className="text-center">开发中</footer>
     </div>
-  )
+  );
 }
 
-export default App
+export default App;

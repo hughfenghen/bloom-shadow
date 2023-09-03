@@ -563,6 +563,21 @@
     "@babel/plugin-transform-react-jsx-source" "^7.22.5"
     react-refresh "^0.14.0"
 
+"@webav/av-canvas@^0.1.52":
+  version "0.1.52"
+  resolved "https://registry.npmmirror.com/@webav/av-canvas/-/av-canvas-0.1.52.tgz#461698a66b4ca1033fd3754ae70ffb2d46bbd5e7"
+  integrity sha512-H3spPADZgI5ducw+mdFH4tONeyzzneB5whs9onRLJeM/7IK/xoJGvaCNV1ctoSMmXtf+Uhx3rzvdCUYo/kvdsA==
+  dependencies:
+    "@webav/av-cliper" "^0.1.52"
+
+"@webav/av-cliper@^0.1.52":
+  version "0.1.52"
+  resolved "https://registry.npmmirror.com/@webav/av-cliper/-/av-cliper-0.1.52.tgz#16b315a7ec29165c063aa4e08a4b9dab21ac42e6"
+  integrity sha512-xg6qGXRJEsLYs1Ul8f0HAWW8i0zFsTznWxgaHDV52XhmSCYFIixLApqhH7wrENYmdgXjZATWsGqvdrzKZYP0Ig==
+  dependencies:
+    mp4box hughfenghen/mp4box.js
+    wave-resampler "^1.0.0"
+
 acorn-jsx@^5.3.2:
   version "5.3.2"
   resolved "https://registry.npmmirror.com/acorn-jsx/-/acorn-jsx-5.3.2.tgz#7ed5bb55908b3b2f1bc55c6af1653bada7f07937"
@@ -1335,6 +1350,10 @@ minimatch@^3.0.4, minimatch@^3.0.5, minimatch@^3.1.1, minimatch@^3.1.2:
   dependencies:
     brace-expansion "^1.1.7"
 
+"mp4box@github:hughfenghen/mp4box.js":
+  version "0.5.3-fenghen"
+  resolved "https://codeload.github.com/hughfenghen/mp4box.js/tar.gz/9e06b3c7075c1fc1c6c0af23fac61fe54576504c"
+
 ms@2.1.2:
   version "2.1.2"
   resolved "https://registry.npmmirror.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
@@ -1812,6 +1831,11 @@ vite@^4.4.5:
     rollup "^3.27.1"
   optionalDependencies:
     fsevents "~2.3.2"
+
+wave-resampler@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmmirror.com/wave-resampler/-/wave-resampler-1.0.0.tgz#127502338d28e6d5315be1abb06665c04bbb4fc6"
+  integrity sha512-bE3rbpZXuKAV52Cd8/BeJvy82ZqEHK8pPWHrZ9JioaVVTBlmWbDC+u4p9blhFcf0Skepb4hlOAHc25XfqLC48g==
 
 which@^2.0.1:
   version "2.0.2"
