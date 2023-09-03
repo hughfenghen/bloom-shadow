@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="h-screen flex flex-col">
       <div className="flex flex-1">
-        <div className="left flex flex-col border-solid border-2 w-[200px]">
+        <div className="left flex flex-col border-solid border-2 w-[250px]">
           <div className="flex-1">
             <AddResource></AddResource>
           </div>
@@ -22,7 +22,7 @@ function App() {
         <div className="main flex-1 border-solid border-2">
           <Player></Player>
         </div>
-        <div className="right border-solid border-2 w-[200px]">开发中</div>
+        <div className="right border-solid border-2 w-[250px]">开发中</div>
       </div>
       <footer className="text-center">开发中</footer>
     </div>
