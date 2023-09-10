@@ -30,8 +30,11 @@ export function Player() {
       <div className="flex">
         <div>
           <button
-            onClick={() => {
-              recorder.start();
+            onClick={async () => {
+              const stop = await recorder.start();
+              setTimeout(() => {
+                stop();
+              }, 3000);
             }}
           >
             录制/暂停
@@ -42,6 +45,16 @@ export function Player() {
           <button>生成视频</button>
         </div>
       </div>
+      <div>
+        <button
+          onClick={() => {
+            recorder.exportVideo(1e6, 2e6);
+          }}
+        >
+          exportVideo
+        </button>
+      </div>
+      <video id="video"></video>
     </>
   );
 }

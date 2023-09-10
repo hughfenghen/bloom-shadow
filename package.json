@@ -12,6 +12,7 @@
   "dependencies": {
     "@webav/av-canvas": "^0.1.54",
     "@webav/av-cliper": "^0.1.54",
+    "@webav/mp4box.js": "^0.5.3-fenghen",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
