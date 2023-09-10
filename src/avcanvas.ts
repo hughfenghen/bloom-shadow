@@ -35,7 +35,7 @@ async function start() {
   if (avCanvas == null) throw Error('uninitialized')
   const stream = avCanvas.captureStream()
   const videoTrack = stream.getVideoTracks()[0]
-  if (videoTrack == null) return () => { }
+  if (videoTrack == null) throw Error('AVCanvas not video track')
 
   const vfReadable = new MediaStreamTrackProcessor({
     track: videoTrack
@@ -61,10 +61,10 @@ async function start() {
     avc: { format: 'avc' }
   })
 
-  const transVF = encodeVideoFrame(30)
+  const transVF = new VideoFrameTransformer(30)
   const stopRead = autoReadStream(vfReadable, {
     onChunk: async (vf) => {
-      const vfWrap = transVF(vf)
+      const vfWrap = transVF.transfrom(vf)
       if (vfWrap == null) return
       encoder.encode(vfWrap.vf, vfWrap.opts)
       vfWrap.vf.close()
@@ -74,23 +74,55 @@ async function start() {
     }
   })
 
-  return () => {
-    stopRead()
+  return {
+    pause: () => {
+      transVF.pause()
+    },
+    play: () => {
+      transVF.play()
+    },
+    stop: stopRead
   }
 }
 
-function encodeVideoFrame(expectFPS: number) {
-  const startTime = performance.now()
-  let lastTime = startTime
+// 
+class VideoFrameTransformer {
+  #startTime = performance.now()
 
-  const maxFPS = expectFPS * 1.1
+  #lastTime = this.#startTime
 
-  let frameCnt = 0
-  return (frame: VideoFrame) => {
+  #frameCnt = 0
+
+  #paused = false
+
+  #pauseTime = 0
+
+  constructor(readonly expectFPS: number) { }
+
+  play() {
+    console.log(55555, this.#paused)
+    if (!this.#paused) return
+    this.#paused = false
+
+    console.log(111, this.#startTime, performance.now() - this.#pauseTime)
+    this.#startTime += performance.now() - this.#pauseTime
+    this.#lastTime += performance.now() - this.#pauseTime
+  }
+
+  pause() {
+    if (this.#paused) return
+    this.#paused = true
+    this.#pauseTime = performance.now()
+  }
+
+  transfrom(frame: VideoFrame) {
     const now = performance.now()
-    const offsetTime = now - startTime
-    // 避免帧率超出期望太高
-    if ((frameCnt / offsetTime) * 1000 > maxFPS) {
+    const offsetTime = now - this.#startTime
+    if (
+      this.#paused ||
+      // 避免帧率超出期望太高
+      (this.#frameCnt / offsetTime) * 1000 > this.expectFPS
+    ) {
       frame.close()
       return
     }
@@ -98,19 +130,18 @@ function encodeVideoFrame(expectFPS: number) {
     const vf = new VideoFrame(frame, {
       // timestamp 单位 微妙
       timestamp: offsetTime * 1000,
-      duration: (now - lastTime) * 1000
+      duration: (now - this.#lastTime) * 1000
     })
-    lastTime = now
+    this.#lastTime = now
 
-    frameCnt += 1
+    this.#frameCnt += 1
     frame.close()
     return {
       vf,
-      opts: { keyFrame: frameCnt % 30 === 0 }
+      opts: { keyFrame: this.#frameCnt % 30 === 0 }
     }
   }
 }
-
 
 function autoReadStream<ST extends ReadableStream>(
   stream: ST,
@@ -165,18 +196,4 @@ function createVideoEl(): HTMLVideoElement {
     display: block;
   `
   return videoEl
-}
-
-function createDownloadBtn(url: string) {
-  const downloadEl = document.createElement('button')
-  downloadEl.textContent = 'download'
-  downloadEl.onclick = () => {
-    const aEl = document.createElement('a')
-    document.body.appendChild(aEl)
-    aEl.setAttribute('href', url)
-    aEl.setAttribute('download', `WebAv-export-${Date.now()}.mp4`)
-    aEl.setAttribute('target', '_self')
-    aEl.click()
-  }
-  return downloadEl
 }

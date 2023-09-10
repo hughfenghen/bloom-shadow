@@ -1,8 +1,15 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { recorder } from './avcanvas';
 
 export function Player() {
   const cvsEl = useRef(null);
+  const recordMngRef = useRef<{
+    pause: () => void;
+    play: () => void;
+    stop: () => void;
+  } | null>(null);
+  const [isRecording, setRecording] = useState(false);
+
   useEffect(() => {
     if (cvsEl.current == null) return;
 
@@ -31,30 +38,31 @@ export function Player() {
         <div>
           <button
             onClick={async () => {
-              const stop = await recorder.start();
-              setTimeout(() => {
-                stop();
-              }, 3000);
+              if (recordMngRef.current == null) {
+                recordMngRef.current = await recorder.start();
+              } else if (isRecording) {
+                recordMngRef.current?.pause();
+              } else {
+                recordMngRef.current?.play();
+              }
+              setRecording(!isRecording);
             }}
           >
-            录制/暂停
+            {isRecording ? '暂停' : '录制'}
           </button>
         </div>
         <div className="ml-auto">
           <button>截图</button> | <button>生成动图</button> |{' '}
-          <button>生成视频</button>
+          <button
+            onClick={() => {
+              // todo: 通过 input:range 获取时间
+              recorder.exportVideo(1e6, 5e6);
+            }}
+          >
+            生成视频
+          </button>
         </div>
       </div>
-      <div>
-        <button
-          onClick={() => {
-            recorder.exportVideo(1e6, 2e6);
-          }}
-        >
-          exportVideo
-        </button>
-      </div>
-      <video id="video"></video>
     </>
   );
 }
