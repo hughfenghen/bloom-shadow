@@ -1,9 +1,17 @@
 import { AVCanvas } from "@webav/av-canvas"
 import { ChunkSlice, convertChunkSlice2MP4 } from "./chunk-slice"
 import { file2stream } from "@webav/av-cliper"
+import { TimeSprite } from "./time-sprite"
 
 let avCanvas: AVCanvas | null = null
 const CHUNK_SLICE = new ChunkSlice()
+
+if (import.meta.hot) {
+  import.meta.hot.accept(() => {
+    avCanvas?.destroy()
+    import.meta.hot?.invalidate()
+  })
+}
 
 export const recorder = {
   init,
@@ -22,6 +30,8 @@ function init(container: HTMLElement) {
       height: 1080
     }
   })
+
+  avCanvas.spriteManager.addSprite(new TimeSprite('ts'))
 
   return avCanvas
 }

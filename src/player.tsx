@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { recorder } from './avcanvas';
 
 export function Player() {
-  const cvsEl = useRef(null);
+  const cvsEl = useRef<HTMLDivElement | null>(null);
   const recordMngRef = useRef<{
     pause: () => void;
     play: () => void;
