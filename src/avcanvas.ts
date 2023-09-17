@@ -79,7 +79,7 @@ async function start() {
       encoder.encode(vfWrap.vf, vfWrap.opts)
       vfWrap.vf.close()
 
-      console.log(666, ~~(fps / (performance.now() - t) * 1000))
+      // console.log('fps:', ~~(fps / (performance.now() - t) * 1000))
       fps += 1
     }
   })
@@ -110,11 +110,9 @@ class VideoFrameTransformer {
   constructor(readonly expectFPS: number) { }
 
   play() {
-    console.log(55555, this.#paused)
     if (!this.#paused) return
     this.#paused = false
 
-    console.log(111, this.#startTime, performance.now() - this.#pauseTime)
     this.#startTime += performance.now() - this.#pauseTime
     this.#lastTime += performance.now() - this.#pauseTime
   }
@@ -138,7 +136,7 @@ class VideoFrameTransformer {
     }
 
     const vf = new VideoFrame(frame, {
-      // timestamp 单位 微妙
+      // timestamp 单位 微秒
       timestamp: offsetTime * 1000,
       duration: (now - this.#lastTime) * 1000
     })

@@ -56,7 +56,8 @@ export function Player() {
           <button
             onClick={() => {
               // todo: 通过 input:range 获取时间
-              recorder.exportVideo(1e6, 5e6);
+              // recorder.exportVideo(1e6, 5e6);
+              recorder.exportVideo(0, Infinity);
             }}
           >
             生成视频
