@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { Slider } from 'antd';
 import { recorder } from './avcanvas';
 
 export function Player() {
@@ -9,29 +10,43 @@ export function Player() {
     stop: () => void;
   } | null>(null);
   const [isRecording, setRecording] = useState(false);
+  const [duration, setDuration] = useState(0);
+  const [range, setRange] = useState<[number, number]>([0, 0]);
+  const timeStr = String(duration);
 
   useEffect(() => {
     if (cvsEl.current == null) return;
 
     recorder.init(cvsEl.current);
-  });
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setDuration(Math.round(recorder.getDuration() / 1e6));
+    }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, []);
 
   return (
     <>
       <div className="cvs-container relative" ref={cvsEl}></div>
       <div className="time-range-wrap flex">
-        <input
-          type="range"
-          id="time-handle"
-          min="0"
-          max="10"
-          step="0.1"
-          value="0"
-          className="flex-1"
-          onChange={() => {}}
-        />
+        <div className="flex-1">
+          <Slider
+            range
+            min={0}
+            max={duration}
+            step={0.01}
+            value={range}
+            disabled={isRecording || duration === 0}
+            onChange={(v) => setRange(v)}
+          />
+        </div>
         <span id="time-value-str" className="ml-4 text-right">
-          <span className="selected">0</span>/<span className="total">0</span>
+          {timeStr}
         </span>
       </div>
       <div className="flex">

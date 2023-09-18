@@ -17,7 +17,10 @@ export const recorder = {
   init,
   start,
   getAVCanvas,
-  exportVideo
+  exportVideo,
+  getDuration: () => {
+    return CHUNK_SLICE.getDuration()
+  }
 }
 
 function init(container: HTMLElement) {

@@ -3,14 +3,21 @@ import mp4box, { SampleOpts } from '@webav/mp4box.js'
 export class ChunkSlice {
   #chunks: EncodedVideoChunk[] = []
 
+  #duration = 0
+
   meta?: EncodedVideoChunkMetadata
 
   append(chunk: EncodedVideoChunk) {
     this.#chunks.push(chunk)
+    this.#duration += chunk.duration ?? 0
   }
 
   getChunks(): EncodedVideoChunk[] {
     return this.#chunks
+  }
+
+  getDuration(): number {
+    return this.#duration
   }
 
   slice(start: number, duration: number): ChunkSlice {
