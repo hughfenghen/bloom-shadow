@@ -929,6 +929,11 @@ browserslist@^4.21.10, browserslist@^4.21.9:
     node-releases "^2.0.13"
     update-browserslist-db "^1.0.11"
 
+bun-types@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.npmmirror.com/bun-types/-/bun-types-1.0.2.tgz#4905f5debd69c1e2695e15fd64a4e68061a4f6d3"
+  integrity sha512-yqBp2SX9cqr5/GReb56uCfM+YP+Hntx3XPjbqX1VJXqOBu+Yqw8iWRFLKFIsz9uEfykLgflhramQ8a5Jgo+Tlg==
+
 callsites@^3.0.0:
   version "3.1.0"
   resolved "https://registry.npmmirror.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"

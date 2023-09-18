@@ -55,6 +55,11 @@ export class ChunkSlice {
     }
     return cs
   }
+
+  delete(start: number, segDuration: number): void {
+    this.#chunks = this.#chunks.filter(c => c.timestamp < start || c.timestamp > start + segDuration)
+    this.#duration = this.#chunks.reduce((acc, cur) => (cur.duration ?? 0) + acc, 0)
+  }
 }
 
 function extractChunkData(chunk: EncodedVideoChunk) {
