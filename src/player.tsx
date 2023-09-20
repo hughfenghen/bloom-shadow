@@ -70,9 +70,8 @@ export function Player() {
           <button>截图</button> | <button>生成动图</button> |{' '}
           <button
             onClick={() => {
-              // todo: 通过 input:range 获取时间
-              // recorder.exportVideo(1e6, 5e6);
-              recorder.exportVideo(0, Infinity);
+              // recorder.exportVideo(1, Infinity);
+              recorder.exportVideo(range[0] * 1e6, range[1] * 1e6);
             }}
           >
             生成视频

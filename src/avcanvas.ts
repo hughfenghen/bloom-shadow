@@ -187,8 +187,8 @@ function autoReadStream<ST extends ReadableStream>(
   }
 }
 
-async function exportVideo(start: number, duration: number) {
-  const file = convertChunkSlice2MP4(CHUNK_SLICE.slice(start, duration))
+async function exportVideo(start: number, end: number) {
+  const file = convertChunkSlice2MP4(CHUNK_SLICE.slice(start, end))
   const { stream, stop } = file2stream(file, 500)
   stop()
   const videoEl = createVideoEl()

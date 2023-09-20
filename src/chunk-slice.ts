@@ -20,38 +20,38 @@ export class ChunkSlice {
     return this.#duration
   }
 
-  slice(start: number, duration: number): ChunkSlice {
+  slice(start: number, end: number): ChunkSlice {
     const cs = new ChunkSlice()
     cs.meta = this.meta
 
     let first = true
+    // todo： 二分查找
     for (const [idx, chunk] of this.#chunks.entries()) {
-      if (chunk.timestamp > start + duration) break
+      if (chunk.timestamp < start) continue
+      if (chunk.timestamp > end) break
 
       // todo: timestamp 可能有偏差
-      if (chunk.timestamp >= start) {
-        if (first && chunk.type !== 'key') {
-          for (let i = idx; i >= 0; i--) {
-            if (this.#chunks[i].type === 'key') {
-              const keyChunk = this.#chunks[i]
-              cs.append(new EncodedVideoChunk({
-                type: keyChunk.type,
-                timestamp: keyChunk.timestamp - start,
-                duration: keyChunk.duration ?? 0,
-                data: extractChunkData(keyChunk),
-              }))
-              break
-            }
+      if (first && chunk.type !== 'key') {
+        for (let i = idx; i >= 0; i--) {
+          if (this.#chunks[i].type === 'key') {
+            const keyChunk = this.#chunks[i]
+            cs.append(new EncodedVideoChunk({
+              type: keyChunk.type,
+              timestamp: keyChunk.timestamp - start,
+              duration: keyChunk.duration ?? 0,
+              data: extractChunkData(keyChunk),
+            }))
+            break
           }
         }
-        first = false
-        cs.append(new EncodedVideoChunk({
-          type: chunk.type,
-          timestamp: chunk.timestamp - start,
-          duration: chunk.duration ?? 0,
-          data: extractChunkData(chunk),
-        }))
       }
+      first = false
+      cs.append(new EncodedVideoChunk({
+        type: chunk.type,
+        timestamp: chunk.timestamp - start,
+        duration: chunk.duration ?? 0,
+        data: extractChunkData(chunk),
+      }))
     }
     return cs
   }
