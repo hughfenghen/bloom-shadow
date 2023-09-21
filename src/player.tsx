@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Slider } from 'antd';
 import { recorder } from './avcanvas';
+import { useAtom } from 'jotai';
+import { expFilesAtom } from './store';
 
 export function Player() {
   const cvsEl = useRef<HTMLDivElement | null>(null);
@@ -13,6 +15,8 @@ export function Player() {
   const [duration, setDuration] = useState(0);
   const [range, setRange] = useState<[number, number]>([0, 0]);
   const timeStr = String(duration);
+
+  const [expFiles, setexpFiles] = useAtom(expFilesAtom);
 
   useEffect(() => {
     if (cvsEl.current == null) return;
@@ -69,9 +73,17 @@ export function Player() {
         <div className="ml-auto">
           <button>截图</button> | <button>生成动图</button> |{' '}
           <button
-            onClick={() => {
+            onClick={async () => {
               // recorder.exportVideo(1, Infinity);
-              recorder.exportVideo(range[0] * 1e6, range[1] * 1e6);
+              setexpFiles(
+                expFiles.concat({
+                  type: 'video',
+                  url: await recorder.exportVideo(
+                    range[0] * 1e6,
+                    range[1] * 1e6
+                  ),
+                })
+              );
             }}
           >
             生成视频

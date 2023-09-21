@@ -1,6 +1,7 @@
 import './App.css';
 import { Player } from './player';
 import { AddResource } from './AddResource';
+import { ExpFiles } from './exp-files';
 
 function App() {
   return (
@@ -22,7 +23,9 @@ function App() {
         <div className="main flex-1 border-solid border-2">
           <Player></Player>
         </div>
-        <div className="right border-solid border-2 w-[250px]">开发中</div>
+        <div className="right border-solid border-2 w-[250px]">
+          <ExpFiles></ExpFiles>
+        </div>
       </div>
       <footer className="text-center">开发中</footer>
     </div>

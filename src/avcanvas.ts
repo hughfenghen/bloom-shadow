@@ -191,10 +191,11 @@ async function exportVideo(start: number, end: number) {
   const file = convertChunkSlice2MP4(CHUNK_SLICE.slice(start, end))
   const { stream, stop } = file2stream(file, 500)
   stop()
-  const videoEl = createVideoEl()
-  videoEl.src = URL.createObjectURL(await new Response(stream).blob())
-  document.body.appendChild(videoEl)
-  videoEl.play().catch(console.error)
+  return URL.createObjectURL(await new Response(stream).blob())
+  // const videoEl = createVideoEl()
+  // videoEl.src = URL.createObjectURL(await new Response(stream).blob())
+  // document.body.appendChild(videoEl)
+  // videoEl.play().catch(console.error)
 }
 
 function createVideoEl(): HTMLVideoElement {
