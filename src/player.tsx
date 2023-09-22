@@ -75,13 +75,12 @@ export function Player() {
           <button
             onClick={async () => {
               // recorder.exportVideo(1, Infinity);
+              const [start, end] = range;
               setexpFiles(
                 expFiles.concat({
                   type: 'video',
-                  url: await recorder.exportVideo(
-                    range[0] * 1e6,
-                    range[1] * 1e6
-                  ),
+                  url: await recorder.exportVideo(start * 1e6, end * 1e6),
+                  duration: end - start,
                 })
               );
             }}
