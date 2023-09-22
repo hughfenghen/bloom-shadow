@@ -1,6 +1,6 @@
 import { atom } from 'jotai';
 
-interface IExpFile {
+export interface IExpFile {
   type: 'video',
   url: string,
   duration: number

@@ -1,9 +1,29 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
-import { expFilesAtom } from './store';
+import { IExpFile, expFilesAtom } from './store';
 
 export function ExpFiles() {
   const [expFiles, setExpFiles] = useAtom(expFilesAtom);
+  const [pvFile, setPVFile] = useState<null | IExpFile>(null);
+
+  const genFile = (f: IExpFile, isPreview = false) => {
+    return f.type === 'video' ? (
+      <video src={f.url} controls={isPreview}></video>
+    ) : (
+      <div></div>
+    );
+  };
+
+  useEffect(() => {
+    const onKeyDown = ({ key }: React.KeyboardEvent<HTMLDivElement>) => {
+      if (key === 'Escape' && pvFile != null) setPVFile(null);
+    };
+    document.addEventListener('keydown', onKeyDown, false);
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown, false);
+    };
+  }, [pvFile]);
 
   return (
     <>
@@ -19,13 +39,28 @@ export function ExpFiles() {
             onDownload={() => {
               download(f.url);
             }}
-            onPreview={() => {}}
+            onPreview={() => {
+              setPVFile(f);
+            }}
           >
-            {f.type === 'video' ? <video src={f.url}></video> : <div>f</div>}
+            {genFile(f)}
           </FileMask>
           <div className="text-center">
             {f.type} {f.duration}s
           </div>
+          {pvFile && (
+            <div
+              onClick={() => setPVFile(null)}
+              className="fixed z-50 top-0 left-0 w-full h-full bg-[#0009]"
+            >
+              <div
+                onClick={(e) => e.stopPropagation()}
+                className="absolute w-[900px] h-[500px] top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"
+              >
+                {genFile(f, true)}
+              </div>
+            </div>
+          )}
         </div>
       ))}
     </>
