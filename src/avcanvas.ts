@@ -57,8 +57,6 @@ async function start() {
     track: videoTrack
   }).readable
 
-  let fps = 0
-  const t = performance.now()
   const encoder = new VideoEncoder({
     error: console.error,
     output: (chunk, meta) => {
@@ -84,9 +82,6 @@ async function start() {
       if (vfWrap == null) return
       encoder.encode(vfWrap.vf, vfWrap.opts)
       vfWrap.vf.close()
-
-      // console.log('fps:', ~~(fps / (performance.now() - t) * 1000))
-      fps += 1
     }
   })
 
@@ -195,20 +190,4 @@ async function exportVideo(start: number, end: number) {
   const { stream, stop } = file2stream(file, 500)
   stop()
   return URL.createObjectURL(await new Response(stream).blob())
-  // const videoEl = createVideoEl()
-  // videoEl.src = URL.createObjectURL(await new Response(stream).blob())
-  // document.body.appendChild(videoEl)
-  // videoEl.play().catch(console.error)
-}
-
-function createVideoEl(): HTMLVideoElement {
-  const videoEl = document.createElement('video')
-  videoEl.controls = true
-  videoEl.autoplay = true
-  videoEl.style.cssText = `
-    width: 900px;
-    height: 500px;
-    display: block;
-  `
-  return videoEl
 }
