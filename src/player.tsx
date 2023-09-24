@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { format } from 'date-fns';
 import { Slider } from 'antd';
 import { recorder } from './avcanvas';
 import { useAtom } from 'jotai';
@@ -26,13 +27,17 @@ export function Player() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setDuration(Math.round(recorder.getDuration() / 1e6));
+      const duration = Math.round(recorder.getDuration() / 1e6);
+      setDuration(duration);
+      if (isRecording) {
+        setRange([0, duration]);
+      }
     }, 1000);
 
     return () => {
       clearInterval(timer);
     };
-  }, []);
+  }, [isRecording]);
 
   return (
     <>
@@ -71,8 +76,10 @@ export function Player() {
           </button>
         </div>
         <div className="ml-auto">
-          <button>截图</button> | <button>生成动图</button> |{' '}
+          <button disabled={duration === 0}>截图</button> |{' '}
+          <button disabled={duration === 0}>生成动图</button> |{' '}
           <button
+            disabled={duration === 0}
             onClick={async () => {
               // recorder.exportVideo(1, Infinity);
               const [start, end] = range;
@@ -81,6 +88,7 @@ export function Player() {
                   type: 'video',
                   url: await recorder.exportVideo(start * 1e6, end * 1e6),
                   duration: end - start,
+                  createTime: format(Date.now(), 'MM-dd HH:mm:ss'),
                 })
               );
             }}

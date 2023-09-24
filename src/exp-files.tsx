@@ -28,16 +28,15 @@ export function ExpFiles() {
   return (
     <>
       {expFiles.map((f, idx) => (
-        <div>
+        <div key={f.url}>
           <FileMask
-            key={f.url}
             onDelete={() => {
               const d = [...expFiles];
               d.splice(idx, 1);
               setExpFiles(d);
             }}
             onDownload={() => {
-              download(f.url);
+              download(f.url, f.createTime);
             }}
             onPreview={() => {
               setPVFile(f);
@@ -48,6 +47,7 @@ export function ExpFiles() {
           <div className="text-center">
             {f.type} {f.duration}s
           </div>
+          <div className="text-center">{f.createTime}</div>
           {pvFile && (
             <div
               onClick={() => setPVFile(null)}
@@ -93,11 +93,12 @@ const FileMask: React.FC<
   );
 };
 
-function download(url: string) {
+function download(url: string, createTime: string) {
   const aEl = document.createElement('a');
   document.body.appendChild(aEl);
   aEl.setAttribute('href', url);
-  aEl.setAttribute('download', `WebAv-export-${Date.now()}.mp4`);
+  aEl.setAttribute('download', `bloom-shadow-${createTime}.mp4`);
   aEl.setAttribute('target', '_self');
   aEl.click();
+  aEl.remove();
 }
