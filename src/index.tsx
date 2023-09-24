@@ -1,7 +1,9 @@
-import './App.css';
-import { Player } from './player';
-import { AddResource } from './AddResource';
-import { ExpFiles } from './exp-files';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import "./index.css";
+import { Player } from "./ui/player";
+import { AddResource } from "./ui/add-resource";
+import { ExpFiles } from "./ui/export-files";
 
 function App() {
   return (
@@ -32,4 +34,8 @@ function App() {
   );
 }
 
-export default App;
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);

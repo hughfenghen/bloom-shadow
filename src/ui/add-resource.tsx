@@ -1,5 +1,5 @@
-import { VideoSprite } from '@webav/av-canvas';
-import { recorder } from './avcanvas';
+import { VideoSprite } from "@webav/av-canvas";
+import { recorder } from "../avcanvas";
 
 export function AddResource() {
   return (
@@ -14,7 +14,7 @@ export function AddResource() {
               audio: true,
             });
             const avCvs = recorder.getAVCanvas();
-            const vs = new VideoSprite('display', mediaStream, {
+            const vs = new VideoSprite("display", mediaStream, {
               audioCtx: avCvs.spriteManager.audioCtx,
             });
             await avCvs.spriteManager.addSprite(vs);

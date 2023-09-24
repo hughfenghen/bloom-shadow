@@ -2,7 +2,7 @@
 
 尝试做一个在浏览器中运行的录屏软件
 
-![wireframe](wireframe.png)
+![wireframe](./doc-assets/wireframe.png)
 
 TODO  
 - [ ] 录制功能
@@ -32,4 +32,4 @@ TODO
 ---
 
 2023-09-01 随手拍的  
-![bloom-shadow](./bloom-shadow.jpg)  
+![bloom-shadow](./doc-assets/bloom-shadow.jpg)  

@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
-import { format } from 'date-fns';
-import { Slider } from 'antd';
-import { recorder } from './avcanvas';
-import { useAtom } from 'jotai';
-import { expFilesAtom } from './store';
+import { useEffect, useRef, useState } from "react";
+import { format } from "date-fns";
+import { Slider } from "antd";
+import { recorder } from "../avcanvas";
+import { useAtom } from "jotai";
+import { expFilesAtom } from "../store/store";
 
 export function Player() {
   const cvsEl = useRef<HTMLDivElement | null>(null);
@@ -72,12 +72,12 @@ export function Player() {
               setRecording(!isRecording);
             }}
           >
-            {isRecording ? '暂停' : '录制'}
+            {isRecording ? "暂停" : "录制"}
           </button>
         </div>
         <div className="ml-auto">
-          <button disabled={duration === 0}>截图</button> |{' '}
-          <button disabled={duration === 0}>生成动图</button> |{' '}
+          <button disabled={duration === 0}>截图</button> |{" "}
+          <button disabled={duration === 0}>生成动图</button> |{" "}
           <button
             disabled={duration === 0}
             onClick={async () => {
@@ -85,10 +85,10 @@ export function Player() {
               const [start, end] = range;
               setexpFiles(
                 expFiles.concat({
-                  type: 'video',
+                  type: "video",
                   url: await recorder.exportVideo(start * 1e6, end * 1e6),
                   duration: end - start,
-                  createTime: format(Date.now(), 'MM-dd HH:mm:ss'),
+                  createTime: format(Date.now(), "MM-dd HH:mm:ss"),
                 })
               );
             }}
