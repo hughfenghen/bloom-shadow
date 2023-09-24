@@ -21,5 +21,5 @@ test('ChunkSlice delete slice', () => {
     } as EncodedVideoChunk)
   }
   cs.delete(2, 3)
-  expect(cs.getDuration()).toBe(6)
+  expect(cs.getDuration()).toBe(8)
 })

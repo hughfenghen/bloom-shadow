@@ -56,8 +56,10 @@ export class ChunkSlice {
     return cs
   }
 
-  delete(start: number, segDuration: number): void {
-    this.#chunks = this.#chunks.filter(c => c.timestamp < start || c.timestamp > start + segDuration)
+  delete(start: number, end: number): void {
+    console.log(444, this.#chunks)
+    this.#chunks = this.#chunks.filter(c => c.timestamp < start || c.timestamp > end)
+    console.log(555, this.#chunks)
     this.#duration = this.#chunks.reduce((acc, cur) => (cur.duration ?? 0) + acc, 0)
   }
 }
