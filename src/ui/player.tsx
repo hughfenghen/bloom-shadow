@@ -73,6 +73,15 @@ export function Player() {
             }}
           >
             {isRecording ? "暂停" : "录制"}
+          </button>{" "}
+          |{" "}
+          <button
+            disabled={isRecording}
+            onClick={() => {
+              recorder.delete(range[0] * 1e6, range[1] * 1e6);
+            }}
+          >
+            删除片段
           </button>
         </div>
         <div className="ml-auto">

@@ -16,6 +16,9 @@ if (import.meta.hot) {
 export const recorder = {
   init,
   start,
+  delete: (start: number, end: number) => {
+    CHUNK_SLICE.delete(start, end)
+  },
   getAVCanvas,
   exportVideo,
   getDuration: () => {
