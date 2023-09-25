@@ -24,42 +24,30 @@ export class ChunkSlice {
     const cs = new ChunkSlice()
     cs.meta = this.meta
 
-    let first = true
     // todo： 二分查找
-    for (const [idx, chunk] of this.#chunks.entries()) {
-      if (chunk.timestamp < start) continue
-      if (chunk.timestamp > end) break
-
-      // todo: timestamp 可能有偏差
-      if (first && chunk.type !== 'key') {
-        for (let i = idx; i >= 0; i--) {
-          if (this.#chunks[i].type === 'key') {
-            const keyChunk = this.#chunks[i]
-            cs.append(new EncodedVideoChunk({
-              type: keyChunk.type,
-              timestamp: keyChunk.timestamp - start,
-              duration: keyChunk.duration ?? 0,
-              data: extractChunkData(keyChunk),
-            }))
-            break
-          }
-        }
-      }
-      first = false
+    const startIndex = this.#chunks.findIndex(c => c.timestamp >= start && c.type === 'key')
+    const endIndex = this.#chunks.findLastIndex(c => c.timestamp <= end)
+    for (const c of this.#chunks.slice(startIndex, endIndex)) {
       cs.append(new EncodedVideoChunk({
-        type: chunk.type,
-        timestamp: chunk.timestamp - start,
-        duration: chunk.duration ?? 0,
-        data: extractChunkData(chunk),
+        type: c.type,
+        timestamp: c.timestamp - start,
+        duration: c.duration ?? 0,
+        data: extractChunkData(c),
       }))
     }
     return cs
   }
 
   delete(start: number, end: number): void {
-    console.log(444, this.#chunks)
-    this.#chunks = this.#chunks.filter(c => c.timestamp < start || c.timestamp > end)
-    console.log(555, this.#chunks)
+    const startIndex = this.#chunks.findIndex(c => c.timestamp >= start)
+    let endIndex = this.#chunks.findLastIndex(c => c.timestamp <= end)
+    for (let i = endIndex; i < this.#chunks.length; i++) {
+      if (this.#chunks[i].type === 'key') {
+        endIndex = i - 1
+        break
+      }
+    }
+    this.#chunks.splice(startIndex, endIndex - startIndex + 1)
     this.#duration = this.#chunks.reduce((acc, cur) => (cur.duration ?? 0) + acc, 0)
   }
 }
