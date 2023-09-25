@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
-import { format } from "date-fns";
-import { Slider } from "antd";
-import { recorder } from "../avcanvas";
-import { useAtom } from "jotai";
-import { expFilesAtom } from "../store/store";
+import { useEffect, useRef, useState } from 'react';
+import { format } from 'date-fns';
+import { Slider } from 'antd';
+import { recorder } from '../avcanvas';
+import { useAtom } from 'jotai';
+import { expFilesAtom } from '../store/store';
 
 export function Player() {
   const cvsEl = useRef<HTMLDivElement | null>(null);
@@ -72,9 +72,9 @@ export function Player() {
               setRecording(!isRecording);
             }}
           >
-            {isRecording ? "暂停" : "录制"}
-          </button>{" "}
-          |{" "}
+            {isRecording ? '暂停' : '录制'}
+          </button>{' '}
+          |{' '}
           <button
             disabled={isRecording}
             onClick={() => {
@@ -85,19 +85,20 @@ export function Player() {
           </button>
         </div>
         <div className="ml-auto">
-          <button disabled={duration === 0}>截图</button> |{" "}
-          <button disabled={duration === 0}>生成动图</button> |{" "}
+          <button disabled={duration === 0}>截图</button> |{' '}
+          <button disabled={duration === 0}>生成动图</button> |{' '}
           <button
             disabled={duration === 0}
             onClick={async () => {
               // recorder.exportVideo(1, Infinity);
               const [start, end] = range;
+              const v = await recorder.exportVideo(start * 1e6, end * 1e6);
               setexpFiles(
                 expFiles.concat({
-                  type: "video",
-                  url: await recorder.exportVideo(start * 1e6, end * 1e6),
-                  duration: end - start,
-                  createTime: format(Date.now(), "MM-dd HH:mm:ss"),
+                  type: 'video',
+                  url: v.url,
+                  duration: Math.floor(v.duration / 1e6),
+                  createTime: format(Date.now(), 'MM-dd HH:mm:ss'),
                 })
               );
             }}

@@ -186,8 +186,12 @@ function autoReadStream<ST extends ReadableStream>(
 }
 
 async function exportVideo(start: number, end: number) {
-  const file = convertChunkSlice2MP4(CHUNK_SLICE.slice(start, end))
+  const cs = CHUNK_SLICE.slice(start, end)
+  const file = convertChunkSlice2MP4(cs)
   const { stream, stop } = file2stream(file, 500)
   stop()
-  return URL.createObjectURL(await new Response(stream).blob())
+  return {
+    url: URL.createObjectURL(await new Response(stream).blob()),
+    duration: cs.getDuration()
+  }
 }

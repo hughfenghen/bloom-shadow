@@ -21,12 +21,18 @@ export class ChunkSlice {
   }
 
   slice(start: number, end: number): ChunkSlice {
+    console.log(1111, { start: start, end: end }, this.#chunks)
     const cs = new ChunkSlice()
     cs.meta = this.meta
 
     // todo： 二分查找
     const startIndex = this.#chunks.findIndex(c => c.timestamp >= start && c.type === 'key')
     const endIndex = this.#chunks.findLastIndex(c => c.timestamp <= end)
+    if (startIndex === -1 || endIndex === -1) {
+      throw Error('ChunkSlice out of bounds')
+    }
+
+    console.log(22222, { startIndex: startIndex, endIndex: endIndex }, this.#chunks.slice(startIndex, endIndex))
     for (const c of this.#chunks.slice(startIndex, endIndex)) {
       cs.append(new EncodedVideoChunk({
         type: c.type,
@@ -41,13 +47,26 @@ export class ChunkSlice {
   delete(start: number, end: number): void {
     const startIndex = this.#chunks.findIndex(c => c.timestamp >= start)
     let endIndex = this.#chunks.findLastIndex(c => c.timestamp <= end)
+    if (startIndex === -1 || endIndex === -1) {
+      throw Error('Deleted fragment out of bounds')
+    }
     for (let i = endIndex; i < this.#chunks.length; i++) {
       if (this.#chunks[i].type === 'key') {
-        endIndex = i - 1
+        endIndex = i
         break
       }
     }
-    this.#chunks.splice(startIndex, endIndex - startIndex + 1)
+    this.#chunks.splice(startIndex, endIndex - startIndex)
+    // 后续的片段时间戳需要前移
+    for (let i = startIndex; i < this.#chunks.length; i++) {
+      const c = this.#chunks[i]
+      this.#chunks[i] = new EncodedVideoChunk({
+        type: c.type,
+        timestamp: c.timestamp - (end - start),
+        duration: c.duration ?? 0,
+        data: extractChunkData(c),
+      })
+    }
     this.#duration = this.#chunks.reduce((acc, cur) => (cur.duration ?? 0) + acc, 0)
   }
 }
