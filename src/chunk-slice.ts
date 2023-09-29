@@ -81,8 +81,8 @@ export function convertChunkSlice2MP4(chunkSlice: ChunkSlice) {
   const file = mp4box.createFile()
   const vTrackId = file.addTrack({
     timescale: 1e6,
-    width: 1920,
-    height: 1080,
+    width: 1280,
+    height: 720,
     brands: ['isom', 'iso2', 'avc1', 'mp42', 'mp41'],
     avcDecoderConfigRecord: chunkSlice.meta?.decoderConfig?.description
   })

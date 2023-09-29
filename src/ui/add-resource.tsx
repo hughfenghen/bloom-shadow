@@ -24,16 +24,16 @@ export function AddResource() {
             // 自适应全屏
             const { w, h } = vs.rect;
             const ratio = w / h;
-            if (ratio > 1920 / 1080) {
+            if (ratio > 1280 / 720) {
               vs.rect.x = 0;
-              vs.rect.w = 1920;
+              vs.rect.w = 1280;
               vs.rect.h = vs.rect.w / ratio;
-              vs.rect.y = (1080 - vs.rect.h) / 2;
+              vs.rect.y = (720 - vs.rect.h) / 2;
             } else {
               vs.rect.y = 0;
-              vs.rect.h = 1080;
+              vs.rect.h = 720;
               vs.rect.w = vs.rect.h * ratio;
-              vs.rect.x = (1920 - vs.rect.w) / 2;
+              vs.rect.x = (1280 - vs.rect.w) / 2;
             }
             setResList(resList.concat(vs));
           }}
@@ -56,11 +56,11 @@ export function AddResource() {
             });
             await avCvs.spriteManager.addSprite(vs);
             // 默认右下角
-            const margin = 1920 * 0.015;
+            const margin = 1280 * 0.015;
             vs.rect.w = 450;
             vs.rect.h = 300;
-            vs.rect.x = 1920 - vs.rect.w - margin;
-            vs.rect.y = 1080 - vs.rect.h - margin;
+            vs.rect.x = 1280 - vs.rect.w - margin;
+            vs.rect.y = 720 - vs.rect.h - margin;
             setResList(resList.concat(vs));
           }}
         >

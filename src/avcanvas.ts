@@ -32,8 +32,8 @@ function init(container: HTMLElement) {
   avCanvas = new AVCanvas(container, {
     bgColor: '#333',
     resolution: {
-      width: 1920,
-      height: 1080
+      width: 1280,
+      height: 720
     }
   })
 
@@ -68,9 +68,10 @@ async function start() {
     codec: 'avc1.4D0032',
     framerate: 30,
     // 码率
-    bitrate: 2e4,
+    bitrate: 4e6,
     width: 1280,
     height: 720,
+    latencyMode: 'quality',
     alpha: 'discard',
     avc: { format: 'avc' }
   })
