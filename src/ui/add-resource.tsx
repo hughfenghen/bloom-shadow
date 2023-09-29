@@ -38,7 +38,7 @@ export function AddResource() {
             setResList(resList.concat(vs));
           }}
         >
-          分享屏幕
+          捕获屏幕
         </button>
         <button
           className="border border-solid border-black px-2"
