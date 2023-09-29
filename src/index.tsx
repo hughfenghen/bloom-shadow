@@ -37,7 +37,7 @@ function App() {
         >
           Bloom Shadow
         </a>{' '}
-        | Powerd by{' '}
+        Powerd by{' '}
         <a
           className="text-blue-400"
           href="https://github.com/hughfenghen/WebAV"
@@ -49,8 +49,4 @@ function App() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
+ReactDOM.createRoot(document.getElementById('root')!).render(<App />);
