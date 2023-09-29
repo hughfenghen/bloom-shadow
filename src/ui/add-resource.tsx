@@ -1,7 +1,10 @@
 import { VideoSprite } from '@webav/av-canvas';
 import { recorder } from '../avcanvas';
+import { useAtom } from 'jotai';
+import { resourceListAtom } from '../store/store';
 
 export function AddResource() {
+  const [resList, setResList] = useAtom(resourceListAtom);
   return (
     <div className="add-sprite">
       <div className="font-bold">添加素材</div>
@@ -32,6 +35,7 @@ export function AddResource() {
               vs.rect.w = vs.rect.h * ratio;
               vs.rect.x = (1920 - vs.rect.w) / 2;
             }
+            setResList(resList.concat(vs));
           }}
         >
           分享屏幕
@@ -57,6 +61,7 @@ export function AddResource() {
             vs.rect.h = 300;
             vs.rect.x = 1920 - vs.rect.w - margin;
             vs.rect.y = 1080 - vs.rect.h - margin;
+            setResList(resList.concat(vs));
           }}
         >
           演讲者

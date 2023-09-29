@@ -4,6 +4,7 @@ import './index.css';
 import { Player } from './ui/player';
 import { AddResource } from './ui/add-resource';
 import { ExpFiles } from './ui/export-files';
+import { ResourceList } from './ui/resource-list';
 
 function App() {
   return (
@@ -15,7 +16,7 @@ function App() {
           </div>
           <div className="sprite-list flex-1">
             <div className="font-bold">素材列表</div>
-            <div>开发中</div>
+            <ResourceList></ResourceList>
           </div>
           <div className="tpl-list flex-1">
             <div className="font-bold">模板列表</div>

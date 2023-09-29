@@ -1,3 +1,4 @@
+import { BaseSprite } from '@webav/av-cliper';
 import { atom } from 'jotai';
 
 export interface IExpFile {
@@ -8,3 +9,5 @@ export interface IExpFile {
 }
 
 export const expFilesAtom = atom<IExpFile[]>([])
+
+export const resourceListAtom = atom<BaseSprite[]>([])
