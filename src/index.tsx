@@ -1,9 +1,9 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import "./index.css";
-import { Player } from "./ui/player";
-import { AddResource } from "./ui/add-resource";
-import { ExpFiles } from "./ui/export-files";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import { Player } from './ui/player';
+import { AddResource } from './ui/add-resource';
+import { ExpFiles } from './ui/export-files';
 
 function App() {
   return (
@@ -29,12 +29,26 @@ function App() {
           <ExpFiles></ExpFiles>
         </div>
       </div>
-      <footer className="text-center">开发中</footer>
+      <footer className="text-center">
+        <a
+          className="text-blue-400"
+          href="https://github.com/hughfenghen/bloom-shadow"
+        >
+          Bloom Shadow
+        </a>{' '}
+        | Powerd by{' '}
+        <a
+          className="text-blue-400"
+          href="https://github.com/hughfenghen/WebAV"
+        >
+          WebAV
+        </a>
+      </footer>
     </div>
   );
 }
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>

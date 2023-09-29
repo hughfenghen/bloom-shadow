@@ -1,6 +1,6 @@
 # 花影
 
-尝试做一个在浏览器中运行的录屏软件
+尝试做一个在浏览器中运行的录屏工具
 
 ![wireframe](./doc-assets/wireframe.png)
 

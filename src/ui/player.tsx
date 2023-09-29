@@ -85,8 +85,12 @@ export function Player() {
           </button>
         </div>
         <div className="ml-auto">
-          <button disabled={duration === 0}>截图</button> |{' '}
-          <button disabled={duration === 0}>生成动图</button> |{' '}
+          <button className="hidden" disabled={duration === 0}>
+            截图
+          </button>
+          <button className="hidden" disabled={duration === 0}>
+            生成动图
+          </button>
           <button
             disabled={duration === 0}
             onClick={async () => {
