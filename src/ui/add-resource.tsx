@@ -17,7 +17,7 @@ export function AddResource() {
               audio: true,
             });
             const avCvs = recorder.getAVCanvas();
-            const vs = new VideoSprite('display', mediaStream, {
+            const vs = new VideoSprite('屏幕', mediaStream, {
               audioCtx: avCvs.spriteManager.audioCtx,
             });
             await avCvs.spriteManager.addSprite(vs);
@@ -51,7 +51,7 @@ export function AddResource() {
               audio: true,
             });
             const avCvs = recorder.getAVCanvas();
-            const vs = new VideoSprite('speaker', mediaStream, {
+            const vs = new VideoSprite('演讲者', mediaStream, {
               audioCtx: avCvs.spriteManager.audioCtx,
             });
             await avCvs.spriteManager.addSprite(vs);
