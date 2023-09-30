@@ -16,8 +16,9 @@ export function AddResource() {
               video: true,
               audio: true,
             });
+            const cnt = resList.filter((it) => it.name.includes('屏幕')).length;
             const avCvs = recorder.getAVCanvas();
-            const vs = new VideoSprite('屏幕', mediaStream, {
+            const vs = new VideoSprite(`屏幕${cnt || ''}`, mediaStream, {
               audioCtx: avCvs.spriteManager.audioCtx,
             });
             await avCvs.spriteManager.addSprite(vs);
@@ -50,8 +51,11 @@ export function AddResource() {
               },
               audio: true,
             });
+            const cnt = resList.filter((it) =>
+              it.name.includes('演讲者')
+            ).length;
             const avCvs = recorder.getAVCanvas();
-            const vs = new VideoSprite('演讲者', mediaStream, {
+            const vs = new VideoSprite(`演讲者${cnt || ''}`, mediaStream, {
               audioCtx: avCvs.spriteManager.audioCtx,
             });
             await avCvs.spriteManager.addSprite(vs);
