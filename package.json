@@ -11,8 +11,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@webav/av-canvas": "^0.1.54",
-    "@webav/av-cliper": "^0.1.54",
+    "@webav/av-canvas": "^0.2.2",
+    "@webav/av-cliper": "^0.2.1",
     "@webav/mp4box.js": "^0.5.3-fenghen",
     "antd": "^5.9.1",
     "date-fns": "^2.30.0",

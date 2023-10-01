@@ -762,17 +762,17 @@
     "@babel/plugin-transform-react-jsx-source" "^7.22.5"
     react-refresh "^0.14.0"
 
-"@webav/av-canvas@^0.1.54":
-  version "0.1.54"
-  resolved "https://registry.npmjs.org/@webav/av-canvas/-/av-canvas-0.1.54.tgz#28300ae46ee4c75cd2ea16ad803bfbfb3c80c25b"
-  integrity sha512-FmpMKG/WatRgYe8z055QyjAfeIggYnCyxX9ij7K8u3l8xgOhhmKctzVKajn6qYwQSMuVsgzyaGMOFQOvKT/B6Q==
+"@webav/av-canvas@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.npmjs.org/@webav/av-canvas/-/av-canvas-0.2.2.tgz#c634876b8cdd76df876e2c095f0677406abd579d"
+  integrity sha512-l+EfVrQ9Y8tQUD6wnHi1n6W36GFFjqZv/YV45Ufa4szMg5ZRcuplN2aZgYTOyQpPFNHdhHd/TdyISPZdBKR8Bw==
   dependencies:
-    "@webav/av-cliper" "^0.1.54"
+    "@webav/av-cliper" "^0.2.1"
 
-"@webav/av-cliper@^0.1.54":
-  version "0.1.54"
-  resolved "https://registry.npmjs.org/@webav/av-cliper/-/av-cliper-0.1.54.tgz#c9f3a87deae07ddc88c0859b0d7c0d2216646b88"
-  integrity sha512-hBuk5hqGgSer8tjV5NmQsL2t55GU79gfzOAy1avH2Ts3MirVfZcs+bt7moMgCVMnh870n2MMrLQCToa4rKHvtw==
+"@webav/av-cliper@^0.2.1":
+  version "0.2.1"
+  resolved "https://registry.npmjs.org/@webav/av-cliper/-/av-cliper-0.2.1.tgz#f9a652fffedf4af5ddbf0bcafe16235c819d4527"
+  integrity sha512-F20orJLRxutMqVy0uV5ZI64hnNyYdFqb4nHC/+Z4iRSd0DJmxubiayfdoBvX/7OjccsnKn1AJ3s3jPQ1PcYnXg==
   dependencies:
     "@webav/mp4box.js" "0.5.3-fenghen"
     wave-resampler "^1.0.0"
