@@ -1,6 +1,7 @@
 # 花影
 
-在浏览器中运行的录屏工具
+在浏览器中运行的录屏工具，可用于视频课程制作、直播推流工作台  
+基于 [WebAV](https://github.com/hughfenghen/WebAV) 实现  
 
 ![wireframe](./doc-assets/wireframe.png)
 
@@ -10,6 +11,7 @@
   - [x] 暂停、恢复录制
   - [ ] 录制音频
   - [ ] slider 起止时间点预览
+  - [ ] OPFS 本地存储
 - [ ] 素材管理
   - [x] 捕获屏幕、演讲者（摄像头+麦克风）
   - [x] 增删素材
