@@ -6,7 +6,7 @@ export class TimeSprite extends BaseSprite {
     super.render(ctx)
     ctx.fillStyle = '#fff'
     ctx.font = '300px Noto Sans SC'
-    ctx.fillText(String(~~performance.now() / 1000), -300, 0)
+    ctx.fillText(String(~~performance.now() / 1000), -500, 100)
   }
 
   destroy(): void { }
