@@ -27,7 +27,7 @@
 - [ ] 多素材存储为模板
 
 
-<video style="width: 100%;" src="./doc-assets/Bloom-Shadow-demo.mp4" controls></video>
+https://github.com/hughfenghen/bloom-shadow/assets/3307051/18f0287c-456d-427b-b398-6d586eb6cc44
 
 ---
 
