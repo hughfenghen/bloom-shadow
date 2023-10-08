@@ -26,6 +26,9 @@
 - [ ] UI 优化
 - [ ] 多素材存储为模板
 
+
+<video style="width: 100%;" src="./doc-assets/Bloom-Shadow-demo.mp4" controls></video>
+
 ---
 
 **北陂杏花**  
