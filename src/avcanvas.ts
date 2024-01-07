@@ -1,6 +1,6 @@
 import { AVCanvas } from "@webav/av-canvas"
 import { ChunkSlice, convertChunkSlice2MP4 } from "./chunk-slice"
-import { file2stream } from "@webav/av-cliper"
+import { file2stream, mp4StreamToOPFSFile } from "@webav/av-cliper"
 import { TimeSprite } from "./time-sprite"
 
 let avCanvas: AVCanvas | null = null
@@ -192,7 +192,7 @@ async function exportVideo(start: number, end: number) {
   const { stream, stop } = file2stream(file, 500)
   stop()
   return {
-    url: URL.createObjectURL(await new Response(stream).blob()),
+    url: URL.createObjectURL(await mp4StreamToOPFSFile(stream)),
     duration: cs.getDuration()
   }
 }
